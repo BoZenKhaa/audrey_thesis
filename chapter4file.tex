@@ -73,7 +73,7 @@ methylation in any of the genotype subgroups (from Table 3, P = 0.65 for CC, P =
 
 
 % TABLE 4.1 HERE
-\begin{table}
+\begin{table}[hp!]
 \caption{Baseline characteristics of the population.}
 \label{table4_1}
 \begin{adjustbox}{width=\textwidth}
@@ -112,12 +112,11 @@ MTHFR C677T genotype, n (\%) & CC: 36 (34.3\%), CT: 36 (34.3\%), TT: 33 (31.4\%)
 \end{table}
 
 % TABLE 4.2 HERE
-\begin{table}
-\small
+\begin{table}[hp!]
 \caption{Biochemical measurements throughout the study.}
 \label{table4_2}
 \begin{adjustbox}{width=\textwidth}
-\begin{tabular}{C{3cm}C{3.3cm}C{3.3cm}C{0.5cm}}
+\begin{tabular}{C{3cm}C{3.3cm}C{3cm}C{1cm}}
 \hline
 \bfseries Metabolite & \bfseries Folic acid (n=105) & \bfseries Placebo (n=111) & \bfseries p-value\\
 \hline
@@ -125,13 +124,13 @@ MTHFR C677T genotype, n (\%) & CC: 36 (34.3\%), CT: 36 (34.3\%), TT: 33 (31.4\%)
 \hline
  Baseline & 12.0 (9.9-14.0)\textsuperscript{1} & 10.8 (8.5-13.9) & 0.01\\
 \hline
- Year 3 & 76.3 (53.4-106.0) & 12.5 (10.3-16.2) & {\textless}0.0001\\
+ Year 3 & 76.3 (53.4-106.0) & 12.5 (10.3-16.2) & \multicolumn{1}{c}{\textless0.0001}\\
 \hline
 \multicolumn{4}{c}{\bfseries Erythrocyte folate (nmol/L)}\\
 \hline
  Baseline & 682.7 (528.8-895.8) & 677.5 (548.2-807.6) & 0.37\\
 \hline
- Year 3 & 2100.7 (1767.2-2611.2) & 679.0 (564.6-864.3) & {\textless}0.0001\\
+ Year 3 & 2100.7 (1767.2-2611.2) & 679.0 (564.6-864.3) & \multicolumn{1}{c}{\textless0.0001}\\
 \hline
 \multicolumn{4}{c}{\bfseries Dietary folate intake ($\mu$g/day)}\\
 \hline
@@ -143,19 +142,21 @@ MTHFR C677T genotype, n (\%) & CC: 36 (34.3\%), CT: 36 (34.3\%), TT: 33 (31.4\%)
 \hline
 Baseline & 12.5 (11.3-14.5) & 13.0 (11.4-15.5) & 0.24\\
 \hline
-Year 3 & 9.8 (8.8-11.0) & 13.4 (11.6-15.1) & {\textless}0.0001\\
+Year 3 & 9.8 (8.8-11.0) & 13.4 (11.6-15.1) & \multicolumn{1}{c}{\textless0.0001}\\
 \hline
 \end{tabular}
 \end{adjustbox}
 \end{table}
 
+\FloatBarrier
+
 % TABLE 4.3 HERE
-\begin{table}
-\small
-\caption{Folic acid supplementation on global DNA methylation for the whole study population, for those with less than normal RBC folate status at baseline, low and high baseline methylation, and stratified by \emph{MTHFR} C677T genotype.}
-\label{table4_3}
-\begin{adjustbox}{width=\textwidth}
-\begin{tabular}{C{2.5cm}C{2.5cm}C{2.5cm}C{2.5cm}C{1cm}}
+\begin{longtable}{ccccc}
+\caption{Folic acid supplementation on global DNA methylation for the whole study population, for those with less than normal RBC folate status at baseline, low and high baseline methylation, and stratified by \emph{MTHFR} C677T genotype.}\\
+\endfirsthead
+\caption{\emph{(continued)}}\\
+\endhead
+
 \hline
 \multicolumn{5}{c}{\bfseries Whole study population}\\
 \hline
@@ -237,18 +238,18 @@ Year 3 & 9.8 (8.8-11.0) & 13.4 (11.6-15.1) & {\textless}0.0001\\
 \hline
  p-value & 0.32 & 0.61 & ~ & ~ \\
 \hline
-\end{tabular}
-\end{adjustbox}
-\end{table}
+\end{longtable}
+
+
+\FloatBarrier
 
 % TABLE 4.4 HERE
-\begin{landscape}
-\begin{table}
+
+\begin{sidewaystable}[hp!]
 \caption{Overview of all randomised controlled trials of folic acid with global DNA methylation as an endpoint.}
 \label{table4_4}
 \begin{adjustbox}{width=\textwidth}
 \begin{tabular}{C{2.192cm}C{2.474cm}C{1.5569999cm}C{1.9099998cm}C{2.615cm}C{3.427cm}C{3.039cm}C{2.509cm}C{3.109cm}}
-
 \hline
 \multicolumn{9}{c}{\bfseries CANCER-FREE POPULATION}\\
 \hline
@@ -259,6 +260,15 @@ Year 3 & 9.8 (8.8-11.0) & 13.4 (11.6-15.1) & {\textless}0.0001\\
  Basten \textit{et al}. 2006 \cite{c435} & 61 healthy volunteers & 1.2mg folic acid & 12 weeks & Global DNA methylation in lymphocytes & [\textsuperscript{3}H] methyl incorporation & RBC folate (nmol/L) intervention 552 (469-655), placebo 668 (508-796) \cite{c448} & Intervention 17508 dpm; placebo 16099 dpm & No effect\\
 \hline
  Present study & 216 healthy volunteers (elevated Hcy) & 800$\mu$g folic acid & 3 years & Global DNA methylation in leukocytes & Liquid chromatography-tandem mass spectrometry (LC-ES MS/MS) & RBC folate (nmol/L) intervention 682.7 (528.8-895.8), placebo 677.5 (548.2-807.6); serum folate (nmol/L) intervention 12.0 (9.9-14.0), placebo 10.8 (8.5-13.9) & Intervention 4.63\% (4.60-4.66), placebo 4.60\% (4.58-4.64) & No effect\\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{sidewaystable}
+
+\begin{sidewaystable}[hp!]
+\caption*{Table 4.4 (continued)}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{C{2.192cm}C{2.474cm}C{1.5569999cm}C{1.9099998cm}C{2.615cm}C{3.427cm}C{3.039cm}C{2.509cm}C{3.109cm}}
 \hline
 \multicolumn{9}{c}{\bfseries CANCER POPULATION}\\
 \hline
@@ -277,8 +287,8 @@ plasma folate (nmol/L) 20.9 (0.8) & None taken & No effect\\
 \hline
 \end{tabular}
 \end{adjustbox}
-\end{table}
-\end{landscape}
+\end{sidewaystable}
+
  
 \section{Discussion} % level 1 
 \noindent In this double-blind randomised controlled trial of daily folic acid supplementation in a Dutch population with moderately elevated homocysteine, we did not find any evidence of changes in global DNA methylation after three years of supplementation. Those whose genotype has previously been associated with lower leukocyte DNA methylation, were no exception. 
