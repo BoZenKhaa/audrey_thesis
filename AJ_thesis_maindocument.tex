@@ -1,0 +1,179 @@
+%typical input for conversion epstopdf plant.pstex or pstopdf distr.ps
+\documentclass[10pt, letterpaper, twoside]{book} %must become 10pt, b5paper %but lshort says report is of a PhD thesis
+
+\usepackage[T1]{fontenc}
+\usepackage[dutch, english]{babel}
+\usepackage{lmodern}
+\usepackage{garamond} % garamond
+  \garamond % garamond
+\usepackage{amssymb} %math symbols  
+
+%Tables:
+\usepackage{array} % for the tables in the chapters, see http://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
+  \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}	
+  \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+  \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{supertabular} % for the tables in the chapters
+\usepackage{hhline} % for the tables in the chapters
+\usepackage{adjustbox} %
+
+
+%Graphics
+\usepackage{tikz} % for tables and figures and graphics in general
+\usetikzlibrary{shapes.geometric, shapes.arrows} % for shapes in the figures
+
+%Various
+\usepackage{caption} % captions for figures (and other things)
+  \captionsetup{labelsep=space,justification=justified,singlelinecheck=off} %Alligns caption with the table
+\usepackage{cite} % for the bibliography so that citations are not listed one after another
+\usepackage{lscape} % landscape tables and such
+\usepackage{tocloft,calc} % table of contents to suppress all levels being displayed
+  \renewcommand{\cftchappresnum}{Chapter}
+  \AtBeginDocument{\addtolength\cftchapnumwidth{\widthof{\bfseries Chapter}}}
+
+%Controls:
+\linespread{1.25}  
+\setlength{\parskip}{\baselineskip}
+%\setlength{\parskip}{3.3ex plus 0ex minus 0.3ex} % sets space before paragraph
+
+%Funky lines for chapter titles:
+\usepackage{titlesec, blindtext, color}
+  \titleformat{\chapter}[hang]{\LARGE\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\LARGE\bfseries}
+    \newcommand{\hsp}{\hspace{20pt}}
+    \definecolor{gray75}{gray}{0.75}
+%Page geometry  
+\usepackage{geometry}
+  \geometry{paperwidth=170mm, paperheight=240mm, inner=2.0cm, outer=1.7cm, top=2cm, bottom=2cm, hcentering=false}
+  
+%\usepackage{fancyhdr} % headers and footers
+%\pagestyle{fancy} % headers and footers
+%\usepackage{listings}
+%\usepackage{hyperref} % for supertabular package in addition to others
+  %\hypersetup{bookmarks=true,colorlinks=true,urlcolor=MyDarkBlue,linkcolor=MyDarkBlue, urlbordercolor=0.1 0.2 0.7,citecolor=MyDarkBlue,pdfmenubar=true, hyperfootnotes=true,hyperfigures=true,hyperindex=true,pdfstartview=FitH}
+%\usepackage{multicol}
+%\usepackage{graphicx}
+%\usepackage{color}
+%\usepackage{xcolor}
+  %\definecolor{MyDarkBlue}{rgb}{0,0,0} 
+%\usepackage{epigraph}
+  %\setlength{\epigraphrule}{0pt}      % remove line from  chapter epigraph
+  %\setlength{\epigraphwidth}{.5\textwidth}
+%\usepackage[sc]{mathpazo}
+%\usepackage{mathptmx}
+%\usepackage{preamble}
+%\usepackage{afterpage}
+%\geometry{hmarginration=2:2} same problem
+%\fancypagestyle{plain}{%
+%\fancyhf{}
+%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}
+%\pagestyle{fancy}
+% \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+% \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\fancyhf{}
+%\fancyhead[RO,LE]{\thepage}
+%\fancyhead[LO]{\nouppercase{\rightmark}}
+%\fancyhead[RE]{\nouppercase{\leftmark}}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0pt}
+%\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45} 
+
+%Maketitle options
+\title{{\bf B vitamins and DNA methylation \\ in colorectal carcinogenesis} \\ \Large across a continuum of \\ differential risk for colorectal cancer}
+\author{Audrey Jung}
+\date{}
+
+\begin{document}
+%\frontmatter
+
+% PAGE 1
+  \maketitle
+
+% PAGE 2
+  \thispagestyle{empty}
+  \noindent Copyright \copyright\ 2014 Audrey Jung\\
+  \textbf{B vitamins and DNA methylation in colorectal carcinogenesis: across a continuum of differential risk for colorectal cancer}\\
+  \noindent Thesis Radboud University Nijmegen with summary in Dutch
+
+  \noindent \textbf{ISBN 978-94-6259-088-5}
+
+  \noindent Cover design by Chris Yuen\\
+  \noindent Typeset with \LaTeXe\\
+  \noindent Printed by Ipskamp Drukkers, Nijmegen\\
+
+% PAGE 3
+\newpage
+\thispagestyle{empty}
+\begin{center}
+  {\Large B vitamins and DNA methylation\\ in colorectal carcinogenesis \\ [0.5cm] \large across a continuum of \\ differential risk for colorectal cancer}\\
+  \bigskip
+  \bigskip
+  \bigskip
+  \bigskip
+  An academic essay in Medical Sciences\\
+  \bigskip
+  {\large Doctoral thesis}\\
+  \bigskip
+  to obtain the degree of doctor\\
+  \smallskip
+  from Radboud University Nijmegen\\
+  \smallskip
+  on the authority of the Rector Magnificus, Prof. mr. S.C.J.J. Kortmann,\\
+  \smallskip
+  according to the Council of Deans\\
+  \smallskip
+  to be defended in public on Friday 25 April 2014\\
+  \smallskip
+  at 10.30 hours\\
+  \smallskip
+  by\\
+  \bigskip
+  {\large Audrey Jung}\\
+  \bigskip
+  born in Kamloops, Canada\\
+  \smallskip
+\end{center}
+
+% PAGE 4
+  \newpage
+  \thispagestyle{empty}
+  \noindent
+  \textbf{Supervisors}:\\
+  \noindent
+  Prof.~dr.~Ellen~Kampman\\
+  Wageningen University \& Radboud University Medical Center\\
+  \quad\\
+  \noindent Prof.~dr.~Henk~Blom\\
+  VU University Medical Center\\
+  \quad\\
+  \noindent
+  \textbf{Co-supervisor}:\\
+  \noindent ~~Dr.~Fokko~Nagengast\\
+  \quad\\
+  \noindent
+  \textbf{Manuscript committee}:\\
+  Prof.~dr.~Nicoline Hoogerbrugge (chair)\\
+  \quad\\
+  \noindent Prof.~dr.~Iris Nagtegaal\\
+  \quad\\
+  \noindent Prof.~dr.~Cornelia Ulrich\\
+  German Cancer Research Center \& Fred Hutchinson Cancer Research Center\\
+
+% PAGE 4
+  \newpage
+  \setcounter{tocdepth}{0}	%sets zero level for table of contents
+  \tableofcontents
+
+% MAIN DOCUMENT
+\mainmatter
+
+\include{test_chap_1}
+\include{test_chap_2}
+\include{chapter3file}
+\include{chapter4file}
+\include{chapter5file}
+\include{chapter6file}
+\include{testagainchap7}
+\include{summary}
+\include{acknowledgements}
+\end{document}
