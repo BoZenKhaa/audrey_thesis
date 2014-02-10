@@ -34,6 +34,10 @@
 \usepackage{tocloft,calc} % table of contents to suppress all levels being displayed
   \renewcommand{\cftchappresnum}{Chapter}
   \AtBeginDocument{\addtolength\cftchapnumwidth{\widthof{\bfseries Chapter}}}
+\pagestyle{myheadings} % headers
+\renewcommand{\chaptermark}[1]{\markboth{#1}{\thechapter} } % headers
+
+
 
 %Controls:
 \linespread{1.25}  
@@ -179,5 +183,6 @@
 \include{chapter6file}
 \include{testagainchap7}
 \include{summary}
+\include{samenvatting}
 \include{acknowledgements}
 \end{document}
