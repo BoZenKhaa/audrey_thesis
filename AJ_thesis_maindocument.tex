@@ -1,5 +1,7 @@
 %typical input for conversion epstopdf plant.pstex or pstopdf distr.ps
-\documentclass[10pt, letterpaper, twoside]{book} %must become 10pt, b5paper %but lshort says report is of a PhD thesis
+\documentclass[10pt, letterpaper, twoside]{scrbook} %must become 10pt, b5paper %but lshort says report is of a PhD thesis
+%Page geometry  
+\usepackage[paperwidth=170mm, paperheight=240mm, inner=2.0cm, outer=1.7cm, top=2cm, bottom=2cm, hcentering=false, includeheadfoot]{geometry}
 
 \usepackage[T1]{fontenc}
 \usepackage[dutch, english]{babel}
@@ -7,10 +9,11 @@
 \usepackage{garamond} % garamond
   \garamond % garamond
 \usepackage{amssymb} %math symbols  
+\usepackage{calc} %To be able to use a notation like \textwidth+20pt
 
 %Tables:
 \usepackage{array} % for the tables in the chapters, see http://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
-  \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}	
+  \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
   \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
   \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \usepackage{supertabular} % for the tables in the chapters
@@ -20,7 +23,7 @@
 \usepackage{rotating}	%used to make some tables landscape
 \usepackage[section]{placeins} %prevents floats from moving across sections. Also enables \FloatBarrier command which stops floats from crossing
 \usepackage{tabularx}%used for very wide tables to auto-adjust column width
-
+\usepackage{lscape} % landscape tables and such
 
 %Graphics
 \usepackage{tikz} % for tables and figures and graphics in general
@@ -30,7 +33,6 @@
 \usepackage{caption} % captions for figures (and other things)
   \captionsetup{labelsep=space,justification=justified,singlelinecheck=off} %Alligns caption with the table
 \usepackage{cite} % for the bibliography so that citations are not listed one after another
-\usepackage{lscape} % landscape tables and such
 \usepackage{tocloft,calc} % table of contents to suppress all levels being displayed
   \renewcommand{\cftchappresnum}{Chapter}
   \AtBeginDocument{\addtolength\cftchapnumwidth{\widthof{\bfseries Chapter}}}
@@ -38,17 +40,28 @@
 %Controls:
 \linespread{1.25}  
 \setlength{\parskip}{\baselineskip}
-%\setlength{\parskip}{3.3ex plus 0ex minus 0.3ex} % sets space before paragraph
-
+ 
 %Funky lines for chapter titles:
-\usepackage{titlesec, blindtext, color}
-  \titleformat{\chapter}[hang]{\LARGE\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\LARGE\bfseries}
+\usepackage{titlesec, color}
+  \titleformat{\chapter}[hang]{\LARGE\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\LARGE\bfseries} %Gray line by the chapter name
     \newcommand{\hsp}{\hspace{20pt}}
     \definecolor{gray75}{gray}{0.75}
-%Page geometry  
-\usepackage{geometry}
-  \geometry{paperwidth=170mm, paperheight=240mm, inner=2.0cm, outer=1.7cm, top=2cm, bottom=2cm, hcentering=false}
+  \titlespacing\section{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right], from package titlesec
+  \titlespacing\subsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+  \titlespacing\subsubsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} 
   
+%Headers: (look at chapter 5 of KomScript manual)
+\usepackage[automark,headsepline]{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+%\renewcommand*{\chaptermarkformat}{}
+\renewcommand*{\chaptermarkformat}{}	%using idea from page 99. of KomScript manual
+\renewcommand*{\sectionmarkformat}{\chapapp~\thechapter\autodot\enskip}	%this here is dirty hack. Instead of section, it chows "Chapter X". Works only because header text for every section was set to empty string like "section[]{section name}"
+\automark[chapter]{section}	%sets automatic header
+\ohead{\headmark}	%make the automark apper in the header
+\ofoot{\pagemark}	%outer footer - page number, usage example: \lofoot[scrplain-left-odd ]{scrheadings-left-odd}
+\setheadsepline[\textwidth+20pt]{0.5pt}	%line in the header
+
 %\usepackage{fancyhdr} % headers and footers
 %\pagestyle{fancy} % headers and footers
 %\usepackage{listings}
@@ -180,4 +193,5 @@
 \include{testagainchap7}
 \include{summary}
 \include{acknowledgements}
+
 \end{document}
