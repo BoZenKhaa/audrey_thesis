@@ -1,10 +1,8 @@
 %typical input for conversion epstopdf plant.pstex or pstopdf distr.ps
 %\documentclass[10pt, letterpaper, twoside]{scrbook} %must become 10pt, b5paper %but lshort says report is of a PhD thesis
-\documentclass[10pt, letterpaper, twoside]{book}
+\documentclass[10pt, letterpaper, twoside]{book} % this is the original documentclass. this also gets rid of the empty 2nd page if using scrbook
 %Page geometry  
 \usepackage[paperwidth=170mm, paperheight=240mm, inner=2.0cm, outer=1.7cm, top=2cm, bottom=2cm, hcentering=false, includeheadfoot]{geometry}
-
-
 
 
 \usepackage{CJK} % chinese
@@ -12,12 +10,14 @@
 \usepackage[T1]{fontenc}
 \usepackage[dutch, english]{babel}
 \usepackage{lmodern}
-\usepackage{garamond} % garamond
- \garamond % garamond
+\usepackage{garamond} % garamond font
+ \garamond % garamond font
 \usepackage{amssymb, amsmath} %math symbols
 \usepackage{calc} %To be able to use a notation like \textwidth+20pt
 
-%Tables:
+
+
+%TABLES
 \usepackage{array} % for the tables in the chapters, see http://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
   \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
   \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -32,19 +32,23 @@
 \usepackage{lscape} % landscape tables and such
 %\newcommand*{\tabbox}[3][t]{% %for tables vertical alignment 
 %    \vspace{0pt}\parbox[#1][3.7\baselineskip]{#2}{\strut#3\strut}} % tables vertical alignment
-\renewcommand{\labelitemi}{$\bullet$} % bullets and numbering in tables
-\renewcommand{\labelitemii}{$\cdot$} % bullets and numbering in tables
-\renewcommand{\labelitemiii}{$\diamond$} % bullets and numbering in tables
-\renewcommand{\labelitemiv}{$\ast$} % bullets and numbering in tables
+\renewcommand{\labelitemi}{$\bullet$} % bullets in tables
+\renewcommand{\labelitemii}{$\cdot$} % bullets in tables
+\renewcommand{\labelitemiii}{$\diamond$} % bullets in tables
+\renewcommand{\labelitemiv}{$\ast$} % bullets in tables
 
 
-%Graphics
+
+%GRAPHICS
 \usepackage{tikz} % for tables and figures and graphics in general
 \usetikzlibrary{shapes.geometric, shapes.arrows} % for shapes in the figures
 
-%Various
+
+
+%VARIOUS
 \usepackage{caption} % captions for figures (and other things)
-  \captionsetup{labelsep=space,justification=justified,singlelinecheck=off} %Alligns caption with the table
+\usepackage[labelfont=bf]{caption} % makes captions bold
+  \captionsetup{labelsep=space,justification=justified,singlelinecheck=off} %Aligns caption with the table
 \usepackage{cite} % for the bibliography so that citations are not listed one after another
 \usepackage{tocloft,calc} % table of contents to suppress all levels being displayed
   \renewcommand{\cftchappresnum}{Chapter}
@@ -54,38 +58,44 @@
 
 
 
-%Controls:
+%CONTROLS
 \linespread{1.25}  
 \setlength{\parskip}{\baselineskip}
  
-%Funky lines for chapter titles:
+ 
+ 
+%COOL GREY LINES FOR CHAPTER TITLES
 \usepackage{titlesec, color}
  \titleformat{\chapter}[hang]{\LARGE\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\LARGE\bfseries} %Gray line by the chapter name
-    \newcommand{\hsp}{\hspace{20pt}}
-    \definecolor{gray75}{gray}{0.75}
-  \titlespacing\section{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right], from package titlesec
-  \titlespacing\subsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
-  \titlespacing\subsubsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
-  
- %new headers section
- \usepackage[sectionbib]{chapterbib}
+  \newcommand{\hsp}{\hspace{20pt}}
+  \definecolor{gray75}{gray}{0.75}
+ \titlespacing\section{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right], from package titlesec
+ \titlespacing\subsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+
+
+ %HEADERS SECTION WITH GEORGETA USING BOOK
+ \usepackage[sectionbib]{chapterbib} % so that references don't start in the middle of the page like a chapter but as part of the chapter (i.e. a section)
  \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
-\lhead[]{\textit{Chapter \thechapter}}
+\lhead[]{\textit{Chapter \thechapter}} % chapter 1, etc at the top left corner
 \chead{}
-\rhead[\textit{\leftmark}]{}
-\lfoot[]{\thepage}
+\rhead[\textit{\leftmark}]{} % chapter name on the top left corner
+\lfoot[]{\thepage} % page number at left bottom
 \cfoot{}
-\rfoot[\thepage]{}
- \fancypagestyle{plain}{%
+\rfoot[\thepage]{} % page number at right bottom
+ \fancypagestyle{plain}{% for pages such as title page and chapter pages that do not need headers
 \fancyfoot[LE]{}
 \fancyfoot[RE]{}
 \fancyhf{} % sets both header and footer to nothing
 % your new footer definitions here
 }
 \renewcommand{\headrulewidth}{0pt}
- 
+
+
+
 %Headers: (look at chapter 5 of KomScript manual)
 %\usepackage[automark,headsepline]{scrpage2}
 %\pagestyle{scrheadings}
@@ -131,7 +141,8 @@
 %\renewcommand{\footrulewidth}{0pt}
 %\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45} 
 
-%Maketitle options
+
+%MAKE TITLE OPTIONS
 \title{{\bf B vitamins and DNA methylation \\ in colorectal carcinogenesis} \\ \Large across a continuum of \\ differential risk for colorectal cancer}
 \author{Audrey Jung}
 \date{}
@@ -139,8 +150,10 @@
  \begin{document}
 %\frontmatter
 
+
 % PAGE 1
   \maketitle
+
   
 % PAGE 2
 \newpage
@@ -155,11 +168,12 @@
   \noindent Typeset with \LaTeXe\\
   \noindent Printed by Ipskamp Drukkers, Nijmegen\\
 
+
 % PAGE 3
 \newpage
 \thispagestyle{empty}
 \begin{center}
-  {\Large B vitamins and DNA methylation\\ in colorectal carcinogenesis \\ [0.5cm] \large across a continuum of \\ differential risk for colorectal cancer}\\
+  {\Large B vitamins and DNA methylation\\ in colorectal carcinogenesis \\ [0.2cm] \large across a continuum of \\ differential risk for colorectal cancer}\\
   \bigskip
   \bigskip
   \bigskip
@@ -230,9 +244,13 @@
 \include{chapter6file}
 \include{testagainchap7}
 
+
+\phantomsection % allows chapter headings to show up
+\lhead[]{\textit{\leftmark}}
+\markboth{Summary}{Summary}
 \include{summary}
 
-\phantomsection
+\phantomsection % allows chapter headings to show up
 \lhead[]{\textit{\leftmark}}
 \markboth{Samenvatting}{Samenvatting}
 \include{samenvatting}
