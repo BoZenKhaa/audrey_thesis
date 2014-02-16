@@ -66,26 +66,28 @@
  
 %COOL GREY LINES FOR CHAPTER TITLES
 \usepackage{titlesec, color}
- \titleformat{\chapter}[hang]{\LARGE\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\LARGE\bfseries} %Gray line by the chapter name
+ \titleformat{\chapter}[hang]{\Large\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Large\bfseries} %Gray line by the chapter name
   \newcommand{\hsp}{\hspace{20pt}}
   \definecolor{gray75}{gray}{0.75}
  \titlespacing\section{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right], from package titlesec
  \titlespacing\subsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
 \titlespacing\subsubsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
-
-
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{} % changes font size of section subsection paragraphs etc
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{}
+%\titleformat{\paragraph}{\normalsize\bfseries}{\theparagraph}{1em}{}
 
  %HEADERS SECTION WITH GEORGETA USING BOOK
  \usepackage[sectionbib]{chapterbib} % so that references don't start in the middle of the page like a chapter but as part of the chapter (i.e. a section)
  \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
-\lhead[]{\textit{Chapter \thechapter}} % chapter 1, etc at the top left corner
+\lhead[\emph{Chapter \thechapter}]{{}} % chapter 1, etc at the top left corner
 \chead{}
-\rhead[\textit{\leftmark}]{} % chapter name on the top left corner
-\lfoot[]{\thepage} % page number at left bottom
+\rhead[\textit{}]{\emph{\leftmark}} % chapter name on the top right corner
+\lfoot[\thepage]{} % page number at left bottom
 \cfoot{}
-\rfoot[\thepage]{} % page number at right bottom
+\rfoot[]{\thepage} % page number at right bottom
  \fancypagestyle{plain}{% for pages such as title page and chapter pages that do not need headers
 \fancyfoot[LE]{}
 \fancyfoot[RE]{}
