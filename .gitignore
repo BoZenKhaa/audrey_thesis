@@ -20,3 +20,4 @@
 *.original
 .fuse_hidden000006b600000003
 *~
+.fuse*
