@@ -1,8 +1,17 @@
 %\newpage
 %  \thispagestyle{empty}
 \chapter*{Acknowledgements}
+\chaptermark{Acknowledgements}
 \label{acknowledgements}
 \addcontentsline{toc}{chapter}{Acknowledgements}
+\AddEverypageHook{%
+	\ifthenelse{\equal{\Chaptername}{Acknowledgements}}{
+		\ifthenelse{\isodd{\thepage}}%
+		{\TileWallPaper{17.4cm}{24.4cm}{thumbA.pdf}}%
+		{\ClearWallPaper}
+	} {\ClearWallPaper}
+} 
+
 
 \pagebreak
 
@@ -46,7 +55,7 @@
 
 \noindent Thank you to the members of the reading committee Nicoline Hoogerbrugge, Iris Nagtegaal, and Cornelia Ulrich for your time. Neli, thank you so much as well for taking the time out of your busy schedule to supervise me at the Hutch. I learned so much from you, and it was wonderful to be part of such an incredible team.
 
-\noindent My gratitude and appreciation go to Iris van Rooij and Carolien Lute for agreeing to be my paranymphs. Dear Iris, you were my first officemate, and thank you too for extending a hand as my ``Dutch buddy'' and for sharing such nice dinners with me! Good times were had with Carolien Lute (who moonlights as a personal chauffeur) pipetting and pyrosequencing in the labs all the livelong days!
+\noindent My gratitude and appreciation go to Iris van Rooij and Carolien Lute for agreeing to be my paranymphs. Dear Iris, you will always be fondly known to me as my first officemate. Thank you for fielding all those initial questions of mine and for all your help. Thank you too for extending a hand as my ``Dutch buddy'' and for sharing such nice dinners with me! Good times were had with Carolien Lute (who moonlights as a personal chauffeur) pipetting and pyrosequencing in the labs all the livelong days!
 
 \noindent Thank you to past and glorious officemates: Judith, Parisa, Janine, Gijs, Martine, and Marcia, who with their good cheer, made things so much more amusing!
 

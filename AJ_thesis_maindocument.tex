@@ -2,7 +2,7 @@
 %\documentclass[10pt, letterpaper, twoside]{scrbook} %must become 10pt, b5paper %but lshort says report is of a PhD thesis
 \documentclass[10pt, letterpaper, twoside]{book} % this is the original documentclass. this also gets rid of the empty 2nd page if using scrbook
 %Page geometry  
-\usepackage[paperwidth=170mm, paperheight=240mm, inner=2.0cm, outer=1.7cm, top=2cm, bottom=2cm, hcentering=false, includeheadfoot]{geometry}
+\usepackage[paperwidth=174mm, paperheight=244mm, inner=2.2cm, outer=1.9cm, top=2.2cm, bottom=2.2cm, hcentering=false, includeheadfoot]{geometry}
 
 
 \usepackage{CJK} % chinese
@@ -25,17 +25,14 @@
 %\usepackage{supertabular} % for the tables in the chapters
 \usepackage{hhline} % for the tables in the chapters
 \usepackage{adjustbox} %Used for scaling tables to fit on pagestyle
-\usepackage{longtable} %splits tables across multiple pages. Does not work with floating environments such as table or figure
-\usepackage{rotating}	%used to make some tables landscape
+\usepackage[figuresright]{rotating}	%used to make some tables landscape
 \usepackage[section]{placeins} %prevents floats from moving across sections. Also enables \FloatBarrier command which stops floats from crossing
 \usepackage{tabularx}%used for very wide tables to auto-adjust column width
 \usepackage{lscape} % landscape tables and such
 %\newcommand*{\tabbox}[3][t]{% %for tables vertical alignment 
 %    \vspace{0pt}\parbox[#1][3.7\baselineskip]{#2}{\strut#3\strut}} % tables vertical alignment
 \renewcommand{\labelitemi}{$\bullet$} % bullets in tables
-\renewcommand{\labelitemii}{$\cdot$} % bullets in tables
-\renewcommand{\labelitemiii}{$\diamond$} % bullets in tables
-\renewcommand{\labelitemiv}{$\ast$} % bullets in tables
+
 
 
 
@@ -50,7 +47,7 @@
   \captionsetup{labelsep=space,justification=justified,singlelinecheck=off} %Aligns caption with the table
 \usepackage{cite} % for the bibliography so that citations are not listed one after another
 \usepackage{tocloft,calc} % table of contents to suppress all levels being displayed
-  \renewcommand{\cftchappresnum}{Chapter}
+ \renewcommand{\cftchappresnum}{Chapter}
   \AtBeginDocument{\addtolength\cftchapnumwidth{\widthof{\bfseries Chapter}}}
 \pagestyle{myheadings} % headers
 \renewcommand{\chaptermark}[1]{\markboth{#1}{\thechapter} } % headers
@@ -97,6 +94,20 @@
 
 
 
+% THUMB INDICES
+\usepackage{xcolor,graphicx,wallpaper}
+\usepackage{ifthen, everypage}
+\let\Chaptermark\chaptermark
+\def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
+
+%
+%
+%\usepackage{chapterthumb}
+%\pagestyle{scrheadings}
+%\lohead[\putchapterthumb]{\putchapterthumb}
+%\renewcommand*{\chapterthumbfont}{\normalfont\Large\sffamily\bfseries}
+
+
 %Headers: (look at chapter 5 of KomScript manual)
 %\usepackage[automark,headsepline]{scrpage2}
 %\pagestyle{scrheadings}
@@ -140,11 +151,12 @@
 %\fancyhead[RE]{\nouppercase{\leftmark}}
 %\renewcommand{\headrulewidth}{0.4pt}
 %\renewcommand{\footrulewidth}{0pt}
-%\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45} 
+%\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45}
+
 
 
 %MAKE TITLE OPTIONS
-\title{{\bf B vitamins and DNA methylation \\ in colorectal carcinogenesis}: \\ \Large across a continuum of differential risk for colorectal cancer}
+\title{{\bf B vitamins and DNA methylation \\ in colorectal carcinogenesis}: \\ \vspace{0.5ex} \Large across a continuum of differential risk for colorectal cancer}
 \author{Audrey Jung}
 \date{}
 
@@ -174,15 +186,17 @@
 \newpage
 \thispagestyle{empty}
 \begin{center}
-  {\Large B vitamins and DNA methylation\\ in colorectal carcinogenesis: \\ [0.2cm] \large across a continuum of differential risk for colorectal cancer}\\
+  {\Large B vitamins and DNA methylation\\ in colorectal carcinogenesis: \\ [0.3cm] \large across a continuum of differential risk for colorectal cancer}\\
   \bigskip
   \bigskip
   \bigskip
   \bigskip
   An academic essay in Medical Sciences\\
-  \bigskip
+\quad\\
+\quad\\
   {\large Doctoral thesis}\\
-  \bigskip
+\quad\\
+\quad\\
   to obtain the degree of doctor\\
   \smallskip
   from Radboud University Nijmegen\\
@@ -247,18 +261,19 @@
 \include{testagainchap7}
 
 \phantomsection % allows chapter headings to show up
-\lhead[]{\textit{\leftmark}}
+\lhead[\emph{\leftmark}]{{}}
+\rhead[]{\emph{\leftmark}}
 \markboth{Summary}{Summary}
 \include{summary}
 
 \phantomsection % allows chapter headings to show up
-\lhead[]{\textit{\leftmark}}
+\lhead[\emph{\leftmark}]{{}}
 \markboth{Samenvatting}{Samenvatting}
 \include{samenvatting}
 
 
-\phantomsection
-\lhead[]{\textit{\leftmark}}
+\phantomsection % allow chapter headings to show up
+\lhead[\emph{\leftmark}]{{}}
 \markboth{Acknowledgements}{Acknowledgements}
 \include{acknowledgements}
 

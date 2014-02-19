@@ -1,6 +1,15 @@
 \chapter*{Summary}
+\chaptermark{Summary}
 \label{summary}
 \addcontentsline{toc}{chapter}{Summary}
+\AddEverypageHook{%
+	\ifthenelse{\equal{\Chaptername}{Summary}}{
+		\ifthenelse{\isodd{\thepage}}%
+		{\TileWallPaper{17.4cm}{24.4cm}{thumbSu.pdf}}%
+		{\ClearWallPaper}
+	} {\ClearWallPaper}
+} 
+
 
 \quad\\
 

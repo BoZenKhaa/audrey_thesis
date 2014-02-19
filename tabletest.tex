@@ -1,0 +1,602 @@
+%typical input for conversion epstopdf plant.pstex or pstopdf distr.ps
+%\documentclass[10pt, letterpaper, twoside]{scrbook} %must become 10pt, b5paper %but lshort says report is of a PhD thesis
+\documentclass[10pt, letterpaper, twoside]{book} % this is the original documentclass. this also gets rid of the empty 2nd page if using scrbook
+%Page geometry  
+\usepackage[paperwidth=174mm, paperheight=244mm, inner=2.2cm, outer=1.9cm, top=2.2cm, bottom=2.2cm, hcentering=false, includeheadfoot]{geometry}
+
+
+\usepackage{CJK} % chinese
+
+\usepackage[T1]{fontenc}
+\usepackage[dutch, english]{babel}
+\usepackage{lmodern}
+\usepackage{garamond} % garamond font
+ \garamond % garamond font
+\usepackage{amssymb, amsmath} %math symbols
+\usepackage{calc} %To be able to use a notation like \textwidth+20pt
+
+
+
+%TABLES
+\usepackage{array} % for the tables in the chapters, see http://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
+  \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+  \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+  \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\usepackage{supertabular} % for the tables in the chapters
+\usepackage{hhline} % for the tables in the chapters
+\usepackage{adjustbox} %Used for scaling tables to fit on pagestyle
+\usepackage[figuresright]{rotating}	%used to make some tables landscape
+\usepackage[section]{placeins} %prevents floats from moving across sections. Also enables \FloatBarrier command which stops floats from crossing
+\usepackage{tabularx}%used for very wide tables to auto-adjust column width
+\usepackage{lscape} % landscape tables and such
+%\newcommand*{\tabbox}[3][t]{% %for tables vertical alignment 
+%    \vspace{0pt}\parbox[#1][3.7\baselineskip]{#2}{\strut#3\strut}} % tables vertical alignment
+\renewcommand{\labelitemi}{$\bullet$} % bullets in tables
+
+
+
+
+%GRAPHICS
+\usepackage{tikz} % for tables and figures and graphics in general
+\usetikzlibrary{shapes.geometric, shapes.arrows} % for shapes in the figures
+
+
+
+%VARIOUS
+\usepackage[labelfont=bf]{caption} % makes captions bold
+  \captionsetup{labelsep=space,justification=justified,singlelinecheck=off} %Aligns caption with the table
+\usepackage{cite} % for the bibliography so that citations are not listed one after another
+\usepackage{tocloft,calc} % table of contents to suppress all levels being displayed
+ \renewcommand{\cftchappresnum}{Chapter}
+  \AtBeginDocument{\addtolength\cftchapnumwidth{\widthof{\bfseries Chapter}}}
+\pagestyle{myheadings} % headers
+\renewcommand{\chaptermark}[1]{\markboth{#1}{\thechapter} } % headers
+
+
+
+%CONTROLS
+\linespread{1.25}  
+\setlength{\parskip}{\baselineskip}
+ 
+ 
+ 
+%COOL GREY LINES FOR CHAPTER TITLES
+\usepackage{titlesec, color}
+ \titleformat{\chapter}[hang]{\Large\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Large\bfseries} %Gray line by the chapter name
+  \newcommand{\hsp}{\hspace{20pt}}
+  \definecolor{gray75}{gray}{0.75}
+ \titlespacing\section{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right], from package titlesec
+ \titlespacing\subsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{1ex plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{} % changes font size of section subsection paragraphs etc
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+%\titleformat{\paragraph}{\normalsize\bfseries}{\theparagraph}{1em}{}
+
+ %HEADERS SECTION WITH GEORGETA USING BOOK
+ \usepackage[sectionbib]{chapterbib} % so that references don't start in the middle of the page like a chapter but as part of the chapter (i.e. a section)
+ \usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
+\lhead[\emph{Chapter \thechapter}]{{}} % chapter 1, etc at the top left corner
+\chead{}
+\rhead[\textit{}]{\emph{\leftmark}} % chapter name on the top right corner
+\lfoot[\thepage]{} % page number at left bottom
+\cfoot{}
+\rfoot[]{\thepage} % page number at right bottom
+ \fancypagestyle{plain}{% for pages such as title page and chapter pages that do not need headers
+\fancyfoot[LE]{}
+\fancyfoot[RE]{}
+\fancyhf{} % sets both header and footer to nothing
+% your new footer definitions here
+}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+% THUMB INDICES
+\usepackage{xcolor,graphicx,wallpaper}
+\usepackage{ifthen, everypage}
+\let\Chaptermark\chaptermark
+\def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
+
+%
+%
+%\usepackage{chapterthumb}
+%\pagestyle{scrheadings}
+%\lohead[\putchapterthumb]{\putchapterthumb}
+%\renewcommand*{\chapterthumbfont}{\normalfont\Large\sffamily\bfseries}
+
+
+%Headers: (look at chapter 5 of KomScript manual)
+%\usepackage[automark,headsepline]{scrpage2}
+%\pagestyle{scrheadings}
+%\clearscrheadfoot
+%%\renewcommand*{\chaptermarkformat}{}
+%\renewcommand*{\chaptermarkformat}{}	%using idea from page 99. of KomScript manual
+%\renewcommand*{\sectionmarkformat}{\chapapp~\thechapter\autodot\enskip}	%this here is dirty hack. Instead of section, it chows "Chapter X". Works only because header text for every section was set to empty string like "section[]{section name}"
+%\automark[chapter]{section}	%sets automatic header
+%\ohead{\headmark}	%make the automark apper in the header
+%\ofoot{\pagemark}	%outer footer - page number, usage example: \lofoot[scrplain-left-odd ]{scrheadings-left-odd}
+%\setheadsepline[\textwidth+20pt]{0pt}	%line in the header
+
+%\usepackage{fancyhdr} % headers and footers
+%\pagestyle{fancy} % headers and footers
+%\usepackage{listings}
+%\usepackage{hyperref} % for supertabular package in addition to others
+  %\hypersetup{bookmarks=true,colorlinks=true,urlcolor=MyDarkBlue,linkcolor=MyDarkBlue, urlbordercolor=0.1 0.2 0.7,citecolor=MyDarkBlue,pdfmenubar=true, hyperfootnotes=true,hyperfigures=true,hyperindex=true,pdfstartview=FitH}
+%\usepackage{multicol}
+%\usepackage{graphicx}
+%\usepackage{color}
+%\usepackage{xcolor}
+  %\definecolor{MyDarkBlue}{rgb}{0,0,0} 
+%\usepackage{epigraph}
+  %\setlength{\epigraphrule}{0pt}      % remove line from  chapter epigraph
+  %\setlength{\epigraphwidth}{.5\textwidth}
+%\usepackage[sc]{mathpazo}
+%\usepackage{mathptmx}
+%\usepackage{preamble}
+%\usepackage{afterpage}
+%\geometry{hmarginration=2:2} same problem
+%\fancypagestyle{plain}{%
+%\fancyhf{}
+%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}
+%\pagestyle{fancy}
+% \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+% \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\fancyhf{}
+%\fancyhead[RO,LE]{\thepage}
+%\fancyhead[LO]{\nouppercase{\rightmark}}
+%\fancyhead[RE]{\nouppercase{\leftmark}}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0pt}
+%\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45}
+
+
+
+%MAKE TITLE OPTIONS
+\title{{\bf B vitamins and DNA methylation \\ in colorectal carcinogenesis}: \\ \vspace{0.5ex} \Large across a continuum of differential risk for colorectal cancer}
+\author{Audrey Jung}
+\date{}
+
+ \begin{document}
+%\frontmatter
+
+
+% PAGE 1
+  \maketitle
+
+  
+% PAGE 2
+\newpage
+  \thispagestyle{empty}
+  \noindent Copyright \copyright\ 2014 Audrey Jung\\
+  \textbf{B vitamins and DNA methylation in colorectal carcinogenesis: across a continuum of differential risk for colorectal cancer}\\
+  \noindent Thesis Radboud University Nijmegen with summary in Dutch
+
+  \noindent \textbf{ISBN 978-94-6259-088-5}
+
+  \noindent Cover design by Chris Yuen\\
+  \noindent Typeset with \LaTeXe\\
+  \noindent Printed by Ipskamp Drukkers, Nijmegen\\
+
+
+% PAGE 3
+\newpage
+\thispagestyle{empty}
+\begin{center}
+  {\Large B vitamins and DNA methylation\\ in colorectal carcinogenesis: \\ [0.3cm] \large across a continuum of differential risk for colorectal cancer}\\
+  \bigskip
+  \bigskip
+  \bigskip
+  \bigskip
+  An academic essay in Medical Sciences\\
+\quad\\
+\quad\\
+  {\large Doctoral thesis}\\
+\quad\\
+\quad\\
+  to obtain the degree of doctor\\
+  \smallskip
+  from Radboud University Nijmegen\\
+  \smallskip
+  on the authority of the Rector Magnificus, Prof. mr. S.C.J.J. Kortmann,\\
+  \smallskip
+  according to the Council of Deans\\
+  \smallskip
+  to be defended in public on Friday 25 April 2014\\
+  \smallskip
+  at 10.30 hours\\
+  \smallskip
+  by\\
+  \bigskip
+  {\large Audrey Jung}\\
+  \bigskip
+  born in Kamloops, Canada\\
+  \smallskip
+\end{center}
+
+% PAGE 4
+  \newpage
+  \thispagestyle{empty}
+  \noindent
+  \textbf{Supervisors}:\\
+  \noindent
+  Prof.~dr.~Ellen~Kampman\\
+  Wageningen University \& Radboud University Medical Center\\
+  \quad\\
+  \noindent Prof.~dr.~Henk~Blom\\
+  VU University Medical Center\\
+  \quad\\
+  \noindent
+  \textbf{Co-supervisor}:\\
+  \noindent ~~Dr.~Fokko~Nagengast\\
+  \quad\\
+  \noindent
+  \textbf{Manuscript committee}:\\
+  Prof.~dr.~Nicoline Hoogerbrugge (chair)\\
+  \quad\\
+  \noindent Prof.~dr.~Iris Nagtegaal\\
+  \quad\\
+  \noindent Prof.~dr.~Cornelia Ulrich\\
+  German Cancer Research Center \& Fred Hutchinson Cancer Research Center\\
+
+% PAGE 4
+  \newpage
+  \thispagestyle{empty}
+  \setcounter{tocdepth}{0}	% sets zero level for table of contents
+  \tableofcontents
+  \pagebreak
+  \thispagestyle{empty}
+% MAIN DOCUMENT
+\mainmatter
+
+
+
+
+
+% TABLE 7.1 HERE
+\begin{sidewaystable}
+\footnotesize
+\caption{Summary of the studies presented in this thesis with folate or folic acid as an exposure.} 
+\label{table7_1}
+%\renewcommand{\arraystretch}{1.4}
+%\begin{adjustbox}{width=18cm}
+\begin{tabular}{L{1.3cm}C{1.5cm}C{2cm}C{2.1cm}C{2.1cm}C{2.1cm}C{4cm}}
+\hline
+\bfseries Colorectal cancer risk & \bfseries Name of study and chapter & \bfseries Study design & \bfseries Population & \bfseries Exposure & \bfseries Outcome & \bfseries Main findings\\
+\hline
+\parbox[t][5.2cm]{1.3cm}{Low} &
+\parbox[t][5.2cm]{1.5cm}{\centering NBS (3)} &
+\parbox[t][5.2cm]{2cm}{\centering Cross-sectional analysis of a population-based survey} &
+\parbox[t][5.2cm]{2.1cm}{\centering Healthy men and women without a personal history of cancer aged 50-70 (n=275)} &
+\parbox[t][5.2cm]{2.1cm}{\centering Extremes of plasma folate (10\textsuperscript{th} and 90\textsuperscript{th} percentiles)} &
+\parbox[t][5.2cm]{2.1cm}{\centering LINE-1 methylation in peripheral blood leukocytes} & 
+\parbox[t][5.2cm]{4cm}{ \centering - No difference in LINE-1 methylation between the 10\textsuperscript{th} percentile and the 90\textsuperscript{th} percentile of plasma folate\\
+- LINE-1 DNA methylation lower in females than in males\\
+- \emph{MTHFR} C677T genotype not associated with LINE-1 methylation\\
+- Age inversely associated with LINE-1 methylation independent of plasma folate}\\
+
+\parbox[t][5.2cm]{1.3cm}{Medium} &
+\parbox[t][5.2cm]{1.5cm}{\centering FACIT (4)} &
+\parbox[t][5.2cm]{2cm}{\centering Randomised placebo-controlled trial} &
+\parbox[t][5.2cm]{2.1cm}{\centering Men and post-menopausal women aged 50-70 years with moderately elevated homocysteine (n=216)} &
+\parbox[t][5.2cm]{2.1cm}{\centering 800 $\mu$g folic acid or placebo daily for three years} &
+\parbox[t][5.2cm]{2.1cm}{\centering Global DNA methylation in peripheral blood leukocytes} &
+\parbox[t][5.2cm]{4cm}{ \centering - No difference in global DNA methylation between the folic acid and the placebo group \\ - No difference in DNA methylation between treatment groups after stratification by \textit{MTHFR} C677T genotype, baseline erythrocyte folate concentrations, baseline DNA methylation levels, age, current smoking status, alcohol intake, body mass index, or sex}\\
+\end{tabular}
+%\end{adjustbox}
+\end{sidewaystable}
+
+
+% TABLE 7.1 PART 1 CONTINUED
+\begin{sidewaystable}
+\footnotesize
+\caption*{\textbf{Table 7.1} {Summary of the studies presented in this thesis with folate or folic acid as an exposure.} \emph{(continued)}}
+\label{table7_1}
+%\begin{adjustbox}{width=18cm}
+\begin{tabular}{L{1.3cm}C{1.5cm}C{2cm}C{2.1cm}C{2.1cm}C{2.1cm}C{4cm}}
+\hline
+\bfseries Colorectal cancer risk & \bfseries Name of study and chapter & \bfseries Study design & \bfseries Population & \bfseries Exposure & \bfseries Outcome & \bfseries Main findings\\
+\hline
+\parbox[t][5cm]{1.3cm}{High} &
+\parbox[t][5cm]{1.5cm}{\centering POLIEP-follow-up (5)} &
+\parbox[t][5cm]{2cm}{\centering Cross-sectional analysis of a cohort study} &
+\parbox[t][5cm]{2.1cm}{\centering Men and women aged 18-75 years with at least one histologically-confirmed colorectal adenoma ever in their life (n=281)} &
+\parbox[t][5cm]{2.1cm}{\centering Plasma folate (5-methyltetra-hydrofolate)} &
+\parbox[t][5cm]{2.1cm}{\centering LINE-1 methylation in peripheral blood leukocytes} &
+\parbox[t][5cm]{4cm}{\centering - Overall inverse association between plasma folate and LINE-1 methylation \\ - In those with \emph{MTHFR} 677CC genotype, plasma folate inversely associated with LINE-1 methylation \\ - In those with a family history of colorectal cancer, plasma folate inversely associated (borderline) with LINE-1 methylation}\\
+
+\parbox[t][2.3cm]{1.3cm}{Very high} &
+\parbox[t][2.3cm]{1.5cm}{\centering Lynch (6)} &
+\parbox[t][2.3cm]{2cm}{\centering Cohort study} &
+\parbox[t][2.3cm]{2.1cm}{\centering MMR gene mutation carriers aged 18-80 years (n=470)} &
+\parbox[t][2.3cm]{2.1cm}{\centering Dietary folate intake} &
+\parbox[t][2.3cm]{2.1cm}{\centering Colorectal adenoma and carcinoma occurrence} &
+\parbox[t][2.3cm]{4cm}{ \centering - No association between dietary folate intake and colorectal tumour risk during a median person-time of 28.0 months}\\
+\hline
+\end{tabular}
+%\end{adjustbox}
+\end{sidewaystable}
+
+
+% TABLE 7.2 HERE 
+\begin{sidewaystable}
+\footnotesize
+%\begin{table}
+\caption{Summary of the studies presented in this thesis with vitamin B2, vitamin B6, vitamin B12, and methionine as exposures.} 
+\label{table7_2}
+%\begin{adjustbox}{width=\textwidth,height=6cm}
+%\begin{tabularx}{\textwidth}{XXXXXXX}
+\begin{tabular}{L{1.3cm}C{1.5cm}C{2cm}C{2.1cm}C{2.1cm}C{2.1cm}C{4cm}}
+\hline\bfseries Colorectal cancer risk & \bfseries Name of study and chapter & \bfseries Study design & \bfseries Population & \bfseries Exposure & \bfseries Outcome & \bfseries Main findings\\
+\hline
+\parbox[t][4cm]{1.3cm}{High} &
+\parbox[t][4cm]{1.5cm}{\centering POLIEP-follow-up (5)} &
+\parbox[t][4cm]{2cm}{\centering Cross-sectional analysis of a cohort study} &
+\parbox[t][4cm]{2.1cm}{\centering Men and women aged 18-75 years with at least one histologically-confirmed colorectal adenoma ever in their life (n=281)} &
+\parbox[t][4cm]{2.1cm}{\centering Plasma riboflavin, PLP, PL, PA, cobalamin, methionine, MMA} &
+\parbox[t][4cm]{2.1cm}{\centering LINE-1 methylation in peripheral blood leukocytes} &
+\parbox[t][4cm]{4cm}{\centering - In those without a family history of colorectal cancer, positive association between plasma methionine and LINE-1 methylation \\ - In those with \textit{MTHFR} 677TT genotype, inverse association between plasma riboflavin and LINE-1 methylation}\\
+
+\parbox[t][4cm]{1.3cm}{Very high} &
+\parbox[t][4cm]{1.5cm}{\centering Lynch (6)} &
+\parbox[t][4cm]{2cm}{\centering Cohort study} &
+\parbox[t][4cm]{2.1cm}{\centering MMR gene mutation carriers aged 18-80 years (n=470)} &
+\parbox[t][4cm]{2.1cm}{\centering Dietary intake of vitamin B2, vitamin B6, vitamin B12, and methionine} &
+\parbox[t][4cm]{2.1cm}{\centering Colorectal adenoma and carcinoma occurrence} &
+\parbox[t][4cm]{4cm}{\centering - No association between dietary intake of any B vitamin nor methionine and colorectal tumour risk during a median person-time of 28.0 months \\ - No significant interactions between intake of B vitamins and methionine with \textit{MTHFR} C677T genotype}\\
+\hline
+%\end{tabularx}
+\end{tabular}
+%\end{adjustbox}
+%\end{table}
+\end{sidewaystable}
+
+
+% TABLE 7.3 HERE
+\begin{sidewaystable}
+\small
+\caption{Summary of studies: effect of folic acid supplementation on leukocyte global DNA methylation in low and medium risk populations.} 
+\label{table7_3}
+\begin{adjustbox}{width=\textwidth}
+%\begin{tabularx}{\textwidth}{XXXXXC{5cm}XX}
+\begin{tabular}{L{1.8cm}C{1.6cm}C{1.6cm}C{1.8cm}C{1.3cm}C{3.2cm}C{1.5cm}C{1.8cm}} 
+\hline
+\bfseries Study & \bfseries Number of participants & \bfseries Participant age range & \bfseries Daily dose & \bfseries Duration & \bfseries DNA methylation assessment method & \bfseries Country & \bfseries Treatment effect\\
+\hline
+\parbox[t][2.2cm]{1.8cm}{\raggedright Fenech \textit{et al}. 1998 \cite{c796}} &
+\parbox[t][2.2cm]{1.6cm}{\centering 63 volunteers} &
+\parbox[t][2.2cm]{1.6cm}{\centering 18-32 years} &
+\parbox[t][2.2cm]{1.8cm}{\centering 2000 $\mu$g folic acid and 20 $\mu$g vitamin B12} &
+\parbox[t][2.2cm]{1.3cm}{\centering 12 weeks} &
+\parbox[t][2.2cm]{3.2cm}{\centering Methyl acceptance assay} &
+\parbox[t][2.2cm]{1.5cm}{\centering Australia} &
+\parbox[t][2.2cm]{1.8cm}{\centering No effect}\\
+
+\parbox[t][1.5cm]{1.8cm}{\raggedright Basten \textit{et al}. 2006 \cite{c797}} &
+\parbox[t][1.5cm]{1.6cm}{\centering 61 volunteers} &
+\parbox[t][1.5cm]{1.6cm}{\centering 20-60 years} &
+\parbox[t][1.5cm]{1.8cm}{\centering 1200 $\mu$g folic acid} &
+\parbox[t][1.5cm]{1.3cm}{\centering 12 weeks} &
+\parbox[t][1.5cm]{3.2cm}{\centering Methyl acceptance assay} &
+\parbox[t][1.5cm]{1.5cm}{\centering United Kingdom} &
+\parbox[t][1.5cm]{1.8cm}{\centering No effect}\\
+
+\parbox[t][2.1cm]{1.8cm}{\raggedright Jung \emph{et al}. 2011 \cite{c798} Chapter 4} &
+\parbox[t][2.1cm]{1.6cm}{\centering 216 volunteers} &
+\parbox[t][2.1cm]{1.6cm}{\centering 50-70 years} &
+\parbox[t][2.1cm]{1.8cm}{\centering 800 $\mu$g folic acid} &
+\parbox[t][2.1cm]{1.3cm}{\centering 3 years} &
+\parbox[t][2.1cm]{3.2cm}{\centering Liquid chromatography electron spray tandem mass spectrometry (LC-ES MS/MS)} &
+\parbox[t][2.1cm]{1.5cm}{\centering Netherlands} &
+\parbox[t][2.1cm]{1.8cm}{\centering No effect}\\
+\hline
+%\end{tabularx}
+\end{tabular}
+\end{adjustbox}
+\end{sidewaystable}
+
+
+% TABLE 7.4 HERE 
+\begin{sidewaystable}
+\caption{Summary of studies: effect of controlled folate and folic acid intake on leukocyte global DNA methylation in low risk populations.}
+\label{table7_4}
+\begin{adjustbox}{width=18cm}
+%\begin{tabularx}{\textwidth}{XXXC{6cm}XXC{7cm}}
+\begin{tabular}{L{2.1cm}C{2cm}C{2.3cm}C{3.5cm}C{2.3cm}C{1.8cm}C{6.1cm}}
+
+\hline\bfseries Study & \bfseries Number of participants & \bfseries Participant age range & \bfseries Daily dose and duration & \bfseries DNA methylation assessment
+method & \bfseries Country & \bfseries Treatment effect\\
+\hline
+
+\parbox[t][4.3cm]{2.1cm}{\raggedright Jacob {\textit{et al}}{. 1998 \cite{c73}}} &
+\parbox[t][4.3cm]{2cm}{\centering 8 post-menopausal women} &
+\parbox[t][4.3cm]{2.3cm}{\centering 49-63 years} &
+\parbox[t][4.3cm]{3.5cm}{\centering day 1-5 195 $\mu$g/day folate { day 6-41 56 $\mu$g/day folate}{ day 42-69 111 $\mu$g/day folate} { day 70-80 286 $\mu$g/day folate} day 81-91 516 $\mu$g/day folate} &
+\parbox[t][4.3cm]{2.3cm}{\centering Methyl acceptance assay} &
+\parbox[t][4.3cm]{1.8cm}{\centering United States of America} &
+\parbox[t][4.3cm]{6.1cm}{\centering - Following folate depletion, increased \textsuperscript{3}Hmethyl incorporation \\ - Following repletion (286-516 $\mu$g/day folate), decreased \textsuperscript{3}Hmethyl incorporation}\\
+
+\parbox[t][2.8cm]{2.1cm}{\raggedright Rampersaud \emph{et al}. 2000 \cite{c74}} &
+\parbox[t][2.8cm]{2cm}{\centering 30 post-menopausal women} &
+\parbox[t][2.8cm]{2.3cm}{\centering 60-85 years} &
+\parbox[t][2.8cm]{3.5cm}{\centering 7 weeks 118 $\mu$g folate/day then 7 weeks 200 or 415 $\mu$g folate/day} &
+\parbox[t][2.8cm]{2.3cm}{\centering Methyl acceptance assay} &
+\parbox[t][2.8cm]{1.8cm}{\centering United States of America} &
+\parbox[t][2.8cm]{6.1cm}{\centering - Following folate depletion, increase in \textsuperscript{3}Hmethyl incorporation in all subjects (both 200 and 415 $\mu$g folate/day groups), but no difference between groups \\ - Following folate repletion, no change in \textsuperscript{3}Hmethyl incorporation within nor between 200 and 415 $\mu$g folate/day groups}\\
+
+%\end{tabularx}
+\end{tabular}
+\end{adjustbox}
+\end{sidewaystable}
+
+
+% TABLE 7.4 CONTINUED 
+\begin{sidewaystable}
+\caption*{\textbf{Table 7.4.} Summary of studies: effect of controlled folate and folic acid intake on leukocyte global DNA methylation in low risk populations. \emph{(continued)}}
+\label{table7_4}
+\begin{adjustbox}{width=18cm}
+%\begin{tabularx}{\textwidth}{XXXC{6cm}XXC{7cm}}
+\begin{tabular}{L{2.1cm}C{2cm}C{2.3cm}C{3.5cm}C{2.3cm}C{1.8cm}C{6.1cm}}
+\hline\bfseries Study & \bfseries Number of participants & \bfseries Participant age range & \bfseries Daily dose and duration & \bfseries DNA methylation assessment
+method & \bfseries Country & \bfseries Treatment effect\\
+\hline
+\parbox[t][3.3cm]{2.1cm}{\raggedright Shelnutt \emph{et al}. 2004 \cite{c75}} &
+\parbox[t][3.3cm]{2cm}{\centering 20 young women with \textit{MTHFR} 677CC or TT genotype} &
+\parbox[t][3.3cm]{2.3cm}{\centering 20-30 years} &
+\parbox[t][3.3cm]{3.5cm}{\centering 7 weeks 115 \textrm{${\pm}$}20 $\mu$g DFE/day then 7 weeks 400 $\mu$g DFE/day} &
+\parbox[t][3.3cm]{2.3cm}{\centering Methyl acceptance assay} &
+\parbox[t][3.3cm]{1.8cm}{\centering United States of America} &
+\parbox[t][3.3cm]{6.1cm}{\centering No effect}\\
+
+\parbox[t][3.2cm]{2.1cm}{\raggedright Shelnutt \emph{et al}. 2004 \cite{c75}} &
+\parbox[t][3.2cm]{2cm}{\centering 20 young women with \textit{MTHFR} 677CC or TT genotype} &
+\parbox[t][3.2cm]{2.3cm}{\centering 20-30 years} &
+\parbox[t][3.2cm]{3.5cm}{\centering 7 weeks 115\textrm{${\pm}$}20 $\mu$g DFE/day then 7 weeks 400 $\mu$g DFE/day} &
+\parbox[t][3.2cm]{2.3cm}{\centering Liquid chromatography tandem mass spectrometry} &
+\parbox[t][3.2cm]{1.8cm}{\centering United States of America} &
+\parbox[t][3.2cm]{6.1cm}{\centering - \emph{MTHFR} 677CC: No effect of depletion nor repletion \\ - \emph{MTHFR} 677TT:  Increase in mCyt/tCyt ratio following repletion}\\
+
+\parbox[t][2.3cm]{2.1cm}{\raggedright Axume \emph{et al}. 2007 \cite{c799}} &
+\parbox[t][2.3cm]{2cm}{\centering 28 women with \textit{MTHFR} 677CC genotype} &
+\parbox[t][2.3cm]{2.3cm}{\centering 18-44 years} &
+\parbox[t][2.3cm]{3.5cm}{\centering 7 weeks 135 $\mu$g DFE/day then 7 weeks 400 or 800 $\mu$g DFE/day} &
+\parbox[t][2.3cm]{2.3cm}{\centering Cytosine extension assay} &
+\parbox[t][2.3cm]{1.8cm}{\centering United States of America} &
+\parbox[t][2.3cm]{6.1cm}{\centering No effect}\\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{sidewaystable}
+
+% TABLE 7.5 HERE 
+\begin{center} 
+\begin{sidewaystable}
+\small
+\caption{Summary of studies: association between blood folate or estimated folate intake (exposure) and leukocyte global DNA methylation (outcome) in low risk populations.} 
+\label{table7_5}
+%\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{L{1.8cm}C{1.8cm}C{1.8cm}C{2.2cm}C{2.7cm}C{1.8cm}C{2.5cm}} 
+
+\hline
+~ & ~ & ~ & ~ & ~ & ~ & ~\\
+\bfseries Study & \bfseries Exposure & \bfseries Study design & \bfseries Population & \bfseries DNA methylation assessment method & \bfseries Country & \bfseries Association\\
+~ & ~ & ~ & ~ & ~ & ~ & ~\\
+\hline
+\parbox[t][3.4cm]{1.8cm}{\raggedright Stern \textit{et al}. 2000 \cite{c712}} &
+\parbox[t][3.4cm]{1.8cm}{\centering Red blood cell folate} &
+\parbox[t][3.4cm]{1.8cm}{\centering Cross-sectional} &
+\parbox[t][3.4cm]{2.2cm}{\centering 10 volunteers with \textit{MTHFR} 677CC or TT genotype aged 25-75} &
+\parbox[t][3.4cm]{2.7cm}{\centering Methyl acceptance assay} &
+\parbox[t][3.4cm]{1.8cm}{\centering United States of America} &
+\parbox[t][3.4cm]{2.5cm}{\centering Positive association (more folate, more methylation) in \textit{MTHFR} 677TT persons}\\
+
+\parbox[t][2.5cm]{1.8cm}{\raggedright Friso \textit{et al}. 2002 \cite{c76}} &
+\parbox[t][2.5cm]{1.8cm}{\centering Plasma folate} &
+\parbox[t][2.5cm]{1.8cm}{\centering Cross-sectional} &
+\parbox[t][2.5cm]{2.2cm}{\centering 292 volunteers with \textit{MTHFR} 677CC or TT genotype} &
+\parbox[t][2.5cm]{2.7cm}{\centering Liquid chromatography mass spectrometry} &
+\parbox[t][2.5cm]{1.8cm}{\centering Italy} &
+\parbox[t][2.5cm]{2.5cm}{\centering Positive association in \textit{MTHFR} 677TT persons}\\
+
+\parbox[t][1.4cm]{1.8cm}{\raggedright Kok \textit{et al}. 2007 \cite{c78}} &
+\parbox[t][1.4cm]{1.8cm}{\centering Plasma folate} &
+\parbox[t][1.4cm]{1.8cm}{\centering Cross-sectional} &
+\parbox[t][1.4cm]{2.2cm}{\centering { 109 healthy volunteers} aged 18-62} &
+\parbox[t][1.4cm]{2.7cm}{\centering LC-ES MS/MS} &
+\parbox[t][1.4cm]{1.8cm}{\centering Netherlands} &
+\parbox[t][1.4cm]{2.5cm}{\centering No association}\\
+\hline
+\end{tabular}
+%\end{adjustbox}
+\end{sidewaystable}
+\end{center}
+
+% TABLE 7.5 CONTINUED 
+\begin{center} 
+\begin{sidewaystable}
+\small
+\caption*{\textbf{Table 7.5} Summary of studies: association between blood folate or estimated folate intake (exposure) and leukocyte global DNA methylation (outcome) in low risk populations. \emph{(continued)}} 
+\label{table7_5}
+%\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{L{1.8cm}C{1.8cm}C{1.8cm}L{2.2cm}C{2.7cm}C{1.8cm}C{2.5cm}}
+\hline
+~ & ~ & ~ & ~ & ~ & ~ & ~\\
+\bfseries Study & \bfseries Exposure & \bfseries Study design & \bfseries Population & \bfseries DNA methylation assessment method & \bfseries Country & \bfseries Association\\
+~ & ~ & ~ & ~ & ~ & ~ & ~\\
+\hline
+
+\parbox[t][2cm]{1.8cm}{\raggedright Ono \textit{et al}. 2012 \cite{c710}} &
+\parbox[t][2cm]{1.8cm}{\centering Dietary folate intake} &
+\parbox[t][2cm]{1.8cm}{\centering Cross-sectional} &
+\parbox[t][2cm]{2.2cm}{\centering 384 female volunteers aged 20-74} &
+\parbox[t][2cm]{2.7cm}{\centering Luminometric methylation assay (LUMA)} &
+\parbox[t][2cm]{1.8cm}{\centering Japan} &
+\parbox[t][2cm]{2.5cm}{\centering Inverse association}\\
+
+\parbox[t][2cm]{1.8cm}{\raggedright Gomes \textit{et al}. 2012 \cite{c79}} &
+\parbox[t][2cm]{1.8cm}{\centering Dietary folate intake} &
+\parbox[t][2cm]{1.8cm}{\centering Cross-sectional} &
+\parbox[t][2cm]{2.2cm}{\centering 126 volunteers aged 60-88} &
+\parbox[t][2cm]{2.7cm}{\centering Imprint Methylated DNA Quantification} &
+\parbox[t][2cm]{1.8cm}{\centering Brazil} &
+\parbox[t][2cm]{2.5cm}{\centering No association}\\
+
+\parbox[t][2cm]{1.8cm}{\raggedright Zhang \textit{et al}. 2012 \cite{c711}} &
+\parbox[t][2cm]{1.8cm}{\centering Dietary folate intake} &
+\parbox[t][2cm]{1.8cm}{\centering Cross-sectional} &
+\parbox[t][2cm]{2.2cm}{\centering 165 volunteers aged 18-78} &
+\parbox[t][2cm]{2.7cm}{\centering Bisulfite-PCR and pyrosequencing of LINE-1} &
+\parbox[t][2cm]{1.8cm}{\centering United States of America} &
+\parbox[t][2cm]{2.5cm}{\centering No association}\\
+
+\parbox[t][1.7cm]{1.8cm}{\raggedright Jung \textit{et al}. submitted \cite{c77} Chapter 3} &
+\parbox[t][1.7cm]{1.8cm}{\centering Plasma folate} &
+\parbox[t][1.7cm]{1.8cm}{\centering Cross-sectional} &
+\parbox[t][1.7cm]{2.2cm}{\centering 275 healthy volunteers aged 50-70} &
+\parbox[t][1.7cm]{2.7cm}{\centering Bisulfite-PCR and pyrosequencing of LINE-1} &
+\parbox[t][1.7cm]{1.8cm}{\centering Netherlands} &
+\parbox[t][1.7cm]{2.5cm}{\centering No association}\\
+\hline
+\end{tabular}
+%\end{adjustbox}
+\end{sidewaystable}
+\end{center}
+
+% TABLE 7.6 HERE
+\begin{sidewaystable}
+\small
+\caption{Summary of studies: association between folate (exposure) and leukocyte DNA methylation (outcome) in high risk populations.} 
+\label{table7_6}
+%\begin{adjustbox}{width=\textwidth}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{L{2cm}C{2cm}C{2cm}C{2cm}C{2.5cm}C{1.5cm}C{3cm}} 
+\hline\bfseries Study & \bfseries Exposure & \bfseries Study design & \bfseries Population & \bfseries DNA methylation assessment 
+method & \bfseries Country & \bfseries Association\\
+\hline
+
+\parbox[t][3.6cm]{2cm}{\raggedright Pufulete \textit{et al}. 2005 \cite{c713}} &
+\parbox[t][3.6cm]{2cm}{\centering Folic acid supplementation (400 $\mu$g folic acid/day \textit{vs}. placebo)} &
+\parbox[t][3.6cm]{2cm}{\centering Randomised, double-blind, placebo-controlled trial} &
+\parbox[t][3.6cm]{2cm}{\centering 31 CRA patients (n=15 folic acid, n=16 placebo)} &
+\parbox[t][3.6cm]{2.5cm}{\centering Methyl acceptance assay} &
+\parbox[t][3.6cm]{1.5cm}{\centering United Kingdom} &
+\parbox[t][3.6cm]{3cm}{\centering Compared with the placebo group, folic acid supplementation resulted in increased leukocyte DNA methylation}\\
+
+\parbox[t][2.1cm]{2cm}{\raggedright Jung \emph{et al}. 2013 \cite{c714} Chapter 5} &
+\parbox[t][2.1cm]{2cm}{\centering Plasma folate} &
+\parbox[t][2.1cm]{2cm}{\centering Cross-sectional} &
+\parbox[t][2.1cm]{2cm}{\centering 281 CRA patients} &
+\parbox[t][2.1cm]{2.5cm}{\centering Bisulfite-PCR and pyrosequencing of LINE-1} &
+\parbox[t][2.1cm]{1.5cm}{\centering Netherlands} &
+\parbox[t][2.1cm]{3cm}{\centering Inverse association between plasma folate and LINE-1 methylation}\\
+\hline
+\end{tabular}
+%\end{adjustbox}
+\end{sidewaystable} 
+
+
+
+\end{document}
