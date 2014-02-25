@@ -11,9 +11,12 @@
 \usepackage[dutch, english]{babel}
 \usepackage{lmodern}
 \usepackage{garamond} % garamond font
- \garamond % garamond font
+\garamond % garamond font
 \usepackage{amssymb, amsmath} %math symbols
 \usepackage{calc} %To be able to use a notation like \textwidth+20pt
+
+\usepackage{textpos} % for the chapter pages citation at bottom of page
+\setlength{\TPHorizModule}{\paperwidth}\setlength{\TPVertModule}{\paperheight}
 
 
 
@@ -31,7 +34,6 @@
 \usepackage{lscape} % landscape tables and such
 %\newcommand*{\tabbox}[3][t]{% %for tables vertical alignment 
 %    \vspace{0pt}\parbox[#1][3.7\baselineskip]{#2}{\strut#3\strut}} % tables vertical alignment
-\renewcommand{\labelitemi}{$\bullet$} % bullets in tables
 
 
 
@@ -92,9 +94,12 @@
 }
 \renewcommand{\headrulewidth}{0pt}
 
-
-
-% THUMB INDICES
+%Interactive references
+\usepackage{hyperref} % for supertabular package in addition to others
+ \hypersetup{bookmarks=true,colorlinks=false, urlbordercolor=0.1 0.2 0.7,pdfmenubar=true, hyperfootnotes=true,hyperfigures=true,hyperindex=true,pdfstartview=FitH}
+  
+  
+ %THUMB INDICES
 \usepackage{xcolor,graphicx,wallpaper}
 \usepackage{ifthen, everypage}
 \let\Chaptermark\chaptermark
@@ -123,8 +128,7 @@
 %\usepackage{fancyhdr} % headers and footers
 %\pagestyle{fancy} % headers and footers
 %\usepackage{listings}
-%\usepackage{hyperref} % for supertabular package in addition to others
-  %\hypersetup{bookmarks=true,colorlinks=true,urlcolor=MyDarkBlue,linkcolor=MyDarkBlue, urlbordercolor=0.1 0.2 0.7,citecolor=MyDarkBlue,pdfmenubar=true, hyperfootnotes=true,hyperfigures=true,hyperindex=true,pdfstartview=FitH}
+
 %\usepackage{multicol}
 %\usepackage{graphicx}
 %\usepackage{color}
@@ -156,30 +160,30 @@
 
 
 %MAKE TITLE OPTIONS
-\title{{\bf B vitamins and DNA methylation \\ in colorectal carcinogenesis}: \\ \vspace{0.5ex} \Large across a continuum of differential risk for colorectal cancer}
-\author{Audrey Jung}
+\title{{\bf B vitamins and DNA methylation \\ in colorectal carcinogenesis}: \\  \vspace{0.5ex}\Large across a continuum of differential risk for colorectal cancer}
+\author{Audrey Y. Jung}
 \date{}
 
- \begin{document}
+\begin{document}
 %\frontmatter
 
 
 % PAGE 1
   \maketitle
 
-  
+
 % PAGE 2
 \newpage
   \thispagestyle{empty}
-  \noindent Copyright \copyright\ 2014 Audrey Jung\\
+  \noindent Copyright \copyright\ 2014 Audrey Y. Jung\\
   \textbf{B vitamins and DNA methylation in colorectal carcinogenesis: across a continuum of differential risk for colorectal cancer}\\
-  \noindent Thesis Radboud University Nijmegen with summary in Dutch
+  \noindent Thesis Radboud University Nijmegen with summaries in English and Dutch
 
   \noindent \textbf{ISBN 978-94-6259-088-5}
 
-  \noindent Cover design by Chris Yuen\\
   \noindent Typeset with \LaTeXe\\
-  \noindent Printed by Ipskamp Drukkers, Nijmegen\\
+  \noindent Cover design: Chris Yuen (www.trinitistudios.com)\\
+  \noindent Printing: Ipskamp Drukkers, Nijmegen\\
 
 
 % PAGE 3
@@ -211,7 +215,7 @@
   \smallskip
   by\\
   \bigskip
-  {\large Audrey Jung}\\
+  {\large Audrey Y. Jung}\\
   \bigskip
   born in Kamloops, Canada\\
   \smallskip
@@ -271,12 +275,14 @@
 \markboth{Samenvatting}{Samenvatting}
 \include{samenvatting}
 
-
 \phantomsection % allow chapter headings to show up
 \lhead[\emph{\leftmark}]{{}}
 \markboth{Acknowledgements}{Acknowledgements}
 \include{acknowledgements}
 
-
+\phantomsection % allow chapter headings to show up
+\lhead[\emph{\leftmark}]{{}}
+\markboth{About the author}{About the author}
+\include{author}
 
 \end{document}
