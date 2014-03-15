@@ -2,7 +2,7 @@
 %\documentclass[10pt, letterpaper, twoside]{scrbook} %must become 10pt, b5paper %but lshort says report is of a PhD thesis
 \documentclass[10pt, letterpaper, twoside]{book} % this is the original documentclass. this also gets rid of the empty 2nd page if using scrbook
 %Page geometry  
-\usepackage[paperwidth=174mm, paperheight=244mm, inner=2.2cm, outer=1.9cm, top=2.2cm, bottom=2.2cm, hcentering=false, includeheadfoot]{geometry}
+\usepackage[paperwidth=174mm, paperheight=244mm, inner=22mm, outer=19mm, top=22mm, bottom=22mm, hcentering=false, includeheadfoot]{geometry}
 
 
 \usepackage{CJK} % chinese
@@ -80,7 +80,8 @@
  \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
-\lhead[\emph{Chapter \thechapter}]{{}} % chapter 1, etc at the top left corner
+%\lhead[\emph{Chapter \thechapter}]{{}} % chapter 1, etc at the top left corner
+\lhead[\emph{\leftmark}]{{}} % chapter name on the top left corner
 \chead{}
 \rhead[\textit{}]{\emph{\leftmark}} % chapter name on the top right corner
 \lfoot[\thepage]{} % page number at left bottom
@@ -98,7 +99,9 @@
 \usepackage{hyperref} % for supertabular package in addition to others
  \hypersetup{bookmarks=true,colorlinks=false, urlbordercolor=0.1 0.2 0.7,pdfmenubar=true, hyperfootnotes=true,hyperfigures=true,hyperindex=true,pdfstartview=FitH}
   
-  
+% % FOR SPACING BETWEEN LETTERS
+%\usepackage{microtype}
+
  %THUMB INDICES
 \usepackage{xcolor,graphicx,wallpaper}
 \usepackage{ifthen, everypage}
@@ -160,16 +163,18 @@
 
 
 %MAKE TITLE OPTIONS
-\title{{\bf B Vitamins and DNA Methylation \\ in Colorectal Carcinogenesis}: \\  \vspace{0.5ex}\Large across a continuum of differential \\ risk for colorectal cancer}
-\author{Audrey Jung}
-\date{}
+%\title{{\bf B Vitamins and DNA Methylation \\ in Colorectal Carcinogenesis}: \\  \vspace{0.5ex}\Large across a continuum of differential \\ risk for colorectal cancer}
+%\author{Audrey Jung}
+%\date{}
 
 \begin{document}
 %\frontmatter
 
+\input{./title.tex}
+
 
 % PAGE 1
-\maketitle
+%\maketitle
 
 % PAGE 2
 \newpage
@@ -190,18 +195,19 @@
 \newpage
 \thispagestyle{empty}
 \begin{center}
-  {\Large B vitamins and DNA methylation\\ in colorectal carcinogenesis: \\ [0.3cm] \large across a continuum of differential risk for colorectal cancer}\\
+ \large \textbf{B vitamins and DNA methylation in colorectal carcinogenesis:} \\
+\large{across a continuum of differential risk for colorectal cancer}\\
   \bigskip
   \bigskip
   \bigskip
   \bigskip
-  An academic essay in Medical Sciences\\
+  \normalsize{An academic essay in Medical Sciences}\\
 \quad\\
 \quad\\
   {\large Doctoral thesis}\\
 \quad\\
 \quad\\
-  to obtain the degree of doctor\\
+  \normalsize{to obtain the degree of doctor\\
   \smallskip
   from Radboud University Nijmegen\\
   \smallskip
@@ -213,11 +219,11 @@
   \smallskip
   at 10.30 hours\\
   \smallskip
-  by\\
+  by}\\
   \qquad\\
   {\large Audrey Jung}\\
 \qquad\\
-  born in Kamloops, Canada\\
+  \normalsize{born in Kamloops, Canada}\\
   \smallskip
 \end{center}
 
