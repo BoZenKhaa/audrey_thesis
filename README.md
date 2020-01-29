@@ -1,1 +1,1 @@
-Thesos project of Audrey's
+Thesis project of Audrey's
